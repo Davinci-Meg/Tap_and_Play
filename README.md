@@ -1,4 +1,4 @@
-# 16 Button Layout with Sound and Icons
+# Sound Button
 
 This project demonstrates a responsive web layout featuring a top navigation bar with a hamburger menu, and a grid of 16 buttons each displaying a different Material Design icon. Clicking each button plays a distinct sound.
 
@@ -27,20 +27,6 @@ This project demonstrates a responsive web layout featuring a top navigation bar
     cd 16-button-layout
     ```
 3. Open `index.html` in your web browser.
-
-## File Structure
-
-16-button-layout/
-│
-├── index.html # Main HTML file
-├── styles.css # CSS file for styling
-├── script.js # JavaScript file for interactivity
-└── sounds/ # Directory containing sound files
-├── sound1.mp3
-├── sound2.mp3
-├── ...
-└── sound16.mp3
-
 
 ## Customization
 
