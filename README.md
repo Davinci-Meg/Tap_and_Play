@@ -1,6 +1,6 @@
 # Sound Button
 
-<img src="https://camo.qiitausercontent.com/eb8e0216005c7badaaa4bf7eb2be4d177990d747/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d507974686f6e2d4632433633432e7376673f6c6f676f3d707974686f6e267374796c653d666f722d7468652d6261646765">
+[![MIT](https://custom-icon-badges.herokuapp.com/badge/license-MIT-8BB80A.svg?logo=law&logoColor=white)]()
 
 This project demonstrates a responsive web layout featuring a top navigation bar with a hamburger menu, and a grid of the buttons each displaying a different Material Design icon. Clicking each button plays a distinct sound.
 
