@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16 Button Layout</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu">
+                <a href="#">MIT LICENCE</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="button-grid">
+            <!-- 16個のアイコンボタンを生成 -->
+            <button class="btn btn1" onclick="playSound('assets/sound1.mp3')"><span class="material-icons">home</span></button>
+            <button class="btn btn2" onclick="playSound('assets/sound2.mp3')"><span class="material-icons">search</span></button>
+            <button class="btn btn3" onclick="playSound('assets/sound3.mp3')"><span class="material-icons">settings</span></button>
+            <button class="btn btn4" onclick="playSound('assets/sound4.mp3')"><span class="material-icons">info</span></button>
+            <button class="btn btn5" onclick="playSound('assets/sound5.mp3')"><span class="material-icons">email</span></button>
+            <button class="btn btn6" onclick="playSound('assets/sound6.mp3')"><span class="material-icons">phone</span></button>
+            <button class="btn btn7" onclick="playSound('assets/sound7.mp3')"><span class="material-icons">map</span></button>
+            <button class="btn btn8" onclick="playSound('assets/sound8.mp3')"><span class="material-icons">shopping_cart</span></button>
+            <button class="btn btn9" onclick="playSound('assets/sound9.mp3')"><span class="material-icons">favorite</span></button>
+            <button class="btn btn10" onclick="playSound('assets/sound10.mp3')"><span class="material-icons">face</span></button>
+            <button class="btn btn11" onclick="playSound('assets/sound11.mp3')"><span class="material-icons">camera_alt</span></button>
+            <button class="btn btn12" onclick="playSound('assets/sound12.mp3')"><span class="material-icons">lock</span></button>
+            <button class="btn btn13" onclick="playSound('assets/sound13.mp3')"><span class="material-icons">help</span></button>
+            <button class="btn btn14" onclick="playSound('assets/sound14.mp3')"><span class="material-icons">notifications</span></button>
+            <button class="btn btn15" onclick="playSound('assets/sound15.mp3')"><span class="material-icons">cloud</span></button>
+            <button class="btn btn16" onclick="playSound('assets/sound16.mp3')"><span class="material-icons">music_note</span></button>
+        </div>
+    </main>
+
+    <script>
+        function playSound(soundFile) {
+            const audio = new Audio(soundFile);
+            console.log(audio);
+            audio.play();
+        }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
