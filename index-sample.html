@@ -53,7 +53,7 @@
 
         main {
             padding: 0;
-            height: calc(100vh - 50px); /* 50pxはheaderの高さを考慮 */
+            height: calc(100vh);
         }
 
         .button-grid {
@@ -254,16 +254,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <nav>
             <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
             <div class="menu">
                 <a href="#" onclick="showDesign()">デザイン</a>
                 <a href="#" onclick="showRecording()">録音</a>
-                <!-- <a href="src/index-en.html">English</a> -->
+                <a href="src/index-en.html">English</a>
             </div>
         </nav>
-    </header>
+    </header> -->
     <main id="main-content">
         <div class="button-grid">
             <!-- 16 buttons with icons -->
@@ -286,7 +286,7 @@
         </div>
     </main>
 
-    <section id="settings-section" style="display: none;">
+    <!-- <section id="settings-section" style="display: none;">
         <div class="settings-container">
             <h3>音声ファイルのアップロード</h3>
             <div class="settings-item">
@@ -370,7 +370,7 @@
                 <button class="btn-back" onclick="showMain()">ホームに戻る</button>
             </div>
         </div>
-    </section>
+    </section> -->
     
     <div id="color-popup" class="popup" style="display: none;">
         <div class="popup-content">
@@ -379,8 +379,7 @@
             <!-- <div class="popup-buttons">
                 <button class="btn-change" onclick="changeButtonColor()">背景色を変更</button>
                 <button class="btn-cancel" onclick="document.getElementById('color-popup').style.display='none'">キャンセル</button>
-            </div><br><br> -->
-            <hr style="border:none;border-top:dashed 1px black;height:1px;width:320px;"><br>
+            </div><br><br> --><br>
             <div class="settings-item">
                 <label for="icon-selector">アイコンを選択してください:</label>
                 <select id="icon-selector">
@@ -401,8 +400,7 @@
                     <option value="cloud">クラウド</option>
                     <option value="music_note">音楽</option>
                 </select>
-            </div><br>
-            <hr style="border:none;border-top:dashed 1px black;height:1px;width:320px;"><br>
+            </div><br><br>
             <!-- <div class="popup-buttons">
                 <button class="btn-change" onclick="updateDesign()">デザインを更新する</button>
                 <button class="btn-cancel" onclick="showMain()">ホームに戻る</button>
@@ -411,9 +409,8 @@
                 <label for="icon-selector">音声ファイルのアップロード</label>
                 <input type="file" id="sound-file" accept="audio/*,.m4a">
             </div><br>
-            <hr style="border:none;border-top:dashed 1px black;height:1px;width:320px;">
             <div class="popup-buttons">
-                <button class="btn-change" onclick="changeButtonColor()">背景色を変更</button>
+                <button class="btn-change" onclick="changeButtonColor()">デザインを変更</button>
                 <button class="btn-cancel" onclick="document.getElementById('color-popup').style.display='none'">キャンセル</button>
             </div><br><br>
         </div>
