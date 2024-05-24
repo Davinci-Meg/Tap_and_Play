@@ -12,8 +12,8 @@
         <nav>
             <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
             <div class="menu">
-                <a href="#">デザイン</a>
-                <a href="#" onclick="showSettings()">録音</a>
+                <a href="#" onclick="showDesign()">デザイン</a>
+                <a href="#" onclick="showRecording()">録音</a>
                 <a href="src/index-en.html">English</a>
             </div>
         </nav>
@@ -74,8 +74,62 @@
         </div>
     </section>
     
+    <section id="design-section" style="display: none;">
+        <div class="settings-container">
+            <h3>ボタンのデザイン変更</h3>
+            <div class="settings-item">
+                <label for="design-sound-selector">変更するボタンを選択してください:</label>
+                <select id="design-sound-selector">
+                    <option value="1">ボタン 1</option>
+                    <option value="2">ボタン 2</option>
+                    <option value="3">ボタン 3</option>
+                    <option value="4">ボタン 4</option>
+                    <option value="5">ボタン 5</option>
+                    <option value="6">ボタン 6</option>
+                    <option value="7">ボタン 7</option>
+                    <option value="8">ボタン 8</option>
+                    <option value="9">ボタン 9</option>
+                    <option value="10">ボタン 10</option>
+                    <option value="11">ボタン 11</option>
+                    <option value="12">ボタン 12</option>
+                    <option value="13">ボタン 13</option>
+                    <option value="14">ボタン 14</option>
+                    <option value="15">ボタン 15</option>
+                    <option value="16">ボタン 16</option>
+                </select>
+            </div>
+            <div class="settings-item">
+                <label for="icon-selector">アイコンを選択してください:</label>
+                <select id="icon-selector">
+                    <option value="home">ホーム</option>
+                    <option value="search">検索</option>
+                    <option value="settings">設定</option>
+                    <option value="info">情報</option>
+                    <option value="email">メール</option>
+                    <option value="phone">電話</option>
+                    <option value="map">地図</option>
+                    <option value="shopping_cart">ショッピングカート</option>
+                    <option value="favorite">お気に入り</option>
+                    <option value="face">顔</option>
+                    <option value="camera_alt">カメラ</option>
+                    <option value="lock">ロック</option>
+                    <option value="help">ヘルプ</option>
+                    <option value="notifications">通知</option>
+                    <option value="cloud">クラウド</option>
+                    <option value="music_note">音楽</option>
+                </select>
+            </div>
+            <div class="settings-buttons">
+                <button class="btn-update" onclick="updateDesign()">デザインを更新する</button>
+                <button class="btn-back" onclick="showMain()">ホームに戻る</button>
+            </div>
+        </div>
+    </section>
+    
+    
 
     <script>
+        // Existing sounds object
         const sounds = {
             1: 'assets/sound1.mp3',
             2: 'assets/sound2.mp3',
@@ -94,23 +148,26 @@
             15: 'assets/sound15.mp3',
             16: 'assets/sound16.mp3'
         };
-
+    
+        // Function to play sound
         function playSound(soundFile) {
             const audio = new Audio(soundFile);
             audio.play();
         }
-
+    
+        // Function to toggle menu visibility
         function toggleMenu() {
             const menu = document.querySelector('.menu');
             menu.classList.toggle('show');
         }
-
+    
+        // Function to upload sound
         function uploadSound() {
             const selector = document.getElementById('sound-selector');
             const fileInput = document.getElementById('sound-file');
             const selectedButton = selector.value;
             const file = fileInput.files[0];
-
+    
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
@@ -123,16 +180,42 @@
                 alert('Please select a sound file to upload.');
             }
         }
-
-        function showSettings() {
+    
+        // Function to show recording section
+        function showRecording() {
             document.getElementById('main-content').style.display = 'none';
+            document.getElementById('design-section').style.display = 'none';
             document.getElementById('settings-section').style.display = 'block';
         }
-
+    
+        // Function to show design section
+        function showDesign() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('settings-section').style.display = 'none';
+            document.getElementById('design-section').style.display = 'block';
+        }
+    
+        // Function to show main section
         function showMain() {
             document.getElementById('main-content').style.display = 'block';
+            document.getElementById('design-section').style.display = 'none';
             document.getElementById('settings-section').style.display = 'none';
         }
-    </script>
+    
+        // Function to update button design
+        function updateDesign() {
+            const buttonSelector = document.getElementById('design-sound-selector');
+            const iconSelector = document.getElementById('icon-selector');
+            const selectedButton = buttonSelector.value;
+            const selectedIcon = iconSelector.value;
+    
+            const buttonElement = document.querySelector(`.btn${selectedButton} span`);
+            if (buttonElement) {
+                buttonElement.textContent = selectedIcon;
+            } else {
+                alert('Failed to update button design. Please try again.');
+            }
+        }
+    </script>    
 </body>
 </html>

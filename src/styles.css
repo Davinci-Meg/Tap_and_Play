@@ -168,3 +168,8 @@ main {
     background-color: #2927a4;
     color: white;
 }
+
+.settings-buttons .btn-update {
+    background-color: #4CAF50;
+    color: white;
+}
