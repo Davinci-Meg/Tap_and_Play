@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16 Button Layout with Sound</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu">
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#" onclick="showSettings()">Settings</a>
+            </div>
+        </nav>
+    </header>
+    <main id="main-content">
+        <div class="button-grid">
+            <!-- 16 buttons with icons -->
+            <button class="btn btn1" onclick="playSound(sounds[1])"><span class="material-icons">home</span></button>
+            <button class="btn btn2" onclick="playSound(sounds[2])"><span class="material-icons">search</span></button>
+            <button class="btn btn3" onclick="playSound(sounds[3])"><span class="material-icons">settings</span></button>
+            <button class="btn btn4" onclick="playSound(sounds[4])"><span class="material-icons">info</span></button>
+            <button class="btn btn5" onclick="playSound(sounds[5])"><span class="material-icons">email</span></button>
+            <button class="btn btn6" onclick="playSound(sounds[6])"><span class="material-icons">phone</span></button>
+            <button class="btn btn7" onclick="playSound(sounds[7])"><span class="material-icons">map</span></button>
+            <button class="btn btn8" onclick="playSound(sounds[8])"><span class="material-icons">shopping_cart</span></button>
+            <button class="btn btn9" onclick="playSound(sounds[9])"><span class="material-icons">favorite</span></button>
+            <button class="btn btn10" onclick="playSound(sounds[10])"><span class="material-icons">face</span></button>
+            <button class="btn btn11" onclick="playSound(sounds[11])"><span class="material-icons">camera_alt</span></button>
+            <button class="btn btn12" onclick="playSound(sounds[12])"><span class="material-icons">lock</span></button>
+            <button class="btn btn13" onclick="playSound(sounds[13])"><span class="material-icons">help</span></button>
+            <button class="btn btn14" onclick="playSound(sounds[14])"><span class="material-icons">notifications</span></button>
+            <button class="btn btn15" onclick="playSound(sounds[15])"><span class="material-icons">cloud</span></button>
+            <button class="btn btn16" onclick="playSound(sounds[16])"><span class="material-icons">music_note</span></button>
+        </div>
+    </main>
+
+    <section id="settings-section" style="display: none;">
+        <h2>Upload or Change Sound Files</h2>
+        <label for="sound-selector">Choose a button:</label>
+        <select id="sound-selector">
+            <option value="1">Button 1</option>
+            <option value="2">Button 2</option>
+            <option value="3">Button 3</option>
+            <option value="4">Button 4</option>
+            <option value="5">Button 5</option>
+            <option value="6">Button 6</option>
+            <option value="7">Button 7</option>
+            <option value="8">Button 8</option>
+            <option value="9">Button 9</option>
+            <option value="10">Button 10</option>
+            <option value="11">Button 11</option>
+            <option value="12">Button 12</option>
+            <option value="13">Button 13</option>
+            <option value="14">Button 14</option>
+            <option value="15">Button 15</option>
+            <option value="16">Button 16</option>
+        </select>
+        <input type="file" id="sound-file" accept="audio/*">
+        <button onclick="uploadSound()">Upload Sound</button>
+        <button onclick="showMain()">Back to Main</button>
+    </section>
+
+    <script>
+        const sounds = {
+            1: 'sound1.mp3',
+            2: 'sound2.mp3',
+            3: 'sound3.mp3',
+            4: 'sound4.mp3',
+            5: 'sound5.mp3',
+            6: 'sound6.mp3',
+            7: 'sound7.mp3',
+            8: 'sound8.mp3',
+            9: 'sound9.mp3',
+            10: 'sound10.mp3',
+            11: 'sound11.mp3',
+            12: 'sound12.mp3',
+            13: 'sound13.mp3',
+            14: 'sound14.mp3',
+            15: 'sound15.mp3',
+            16: 'sound16.mp3'
+        };
+
+        function playSound(soundFile) {
+            const audio = new Audio(soundFile);
+            audio.play();
+        }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('show');
+        }
+
+        function uploadSound() {
+            const selector = document.getElementById('sound-selector');
+            const fileInput = document.getElementById('sound-file');
+            const selectedButton = selector.value;
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const soundUrl = e.target.result;
+                    sounds[selectedButton] = soundUrl;
+                    document.querySelector(`.btn${selectedButton}`).onclick = () => playSound(soundUrl);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a sound file to upload.');
+            }
+        }
+
+        function showSettings() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('settings-section').style.display = 'block';
+        }
+
+        function showMain() {
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('settings-section').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
