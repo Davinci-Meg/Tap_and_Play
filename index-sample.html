@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sound Button</title>
     <style>
+        /* CSSリセット */
         * {
             margin: 0;
             padding: 0;
@@ -13,6 +14,11 @@
 
         body {
             font-family: Arial, sans-serif;
+            user-select: none;
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            -moz-touch-callout:none;
+            -moz-user-select:none;
         }
 
         header {
@@ -51,7 +57,7 @@
 
         main {
             padding: 0;
-            height: calc(100vh);
+            height: calc(100vh - 50px); /* 50pxはheaderの高さを考慮 */
         }
 
         .button-grid {
@@ -200,15 +206,11 @@
             background: #fff;
             border-radius: 10px;
             padding: 20px;
-            width: 350px;
+            width: 300px;
             margin: 0 auto;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             animation: fadeIn 0.3s;
-        }
-        .popup-content label {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
         }
 
         .popup h3 {
@@ -238,7 +240,7 @@
         }
 
         .btn-cancel {
-            background-color: #2927a4;
+            background-color: #4CAF50;
             color: white;
         }
 
@@ -252,10 +254,21 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu">
+                <a href="#" onclick="showDesign()">デザイン</a>
+                <a href="#" onclick="showRecording()">録音</a>
+                <!-- <a href="src/index-en.html">English</a> -->
+            </div>
+        </nav>
+    </header>
     <main id="main-content">
         <div class="button-grid">
             <!-- 16 buttons with icons -->
@@ -277,12 +290,67 @@
             <button class="btn btn16" onclick="playSound(sounds[16])"><span class="material-icons">music_note</span></button>
         </div>
     </main>
-    <div id="color-popup" class="popup" style="display: none;">
-        <div class="popup-content">
-            <h5><label for="color-input">背景色を変更</label></h5>
-            <input type="color" id="color-input" value="#e57373", style="width: 200px;"><br><br>
+
+    <section id="settings-section" style="display: none;">
+        <div class="settings-container">
+            <h3>音声ファイルのアップロード</h3>
             <div class="settings-item">
-                <h5><label for="icon-selector">アイコンを選択してください:</label></h5>
+                <label for="sound-selector">変更するボタンを選択してください:</label>
+                <select id="sound-selector">
+                    <option value="1">ボタン 1</option>
+                    <option value="2">ボタン 2</option>
+                    <option value="3">ボタン 3</option>
+                    <option value="4">ボタン 4</option>
+                    <option value="5">ボタン 5</option>
+                    <option value="6">ボタン 6</option>
+                    <option value="7">ボタン 7</option>
+                    <option value="8">ボタン 8</option>
+                    <option value="9">ボタン 9</option>
+                    <option value="10">ボタン 10</option>
+                    <option value="11">ボタン 11</option>
+                    <option value="12">ボタン 12</option>
+                    <option value="13">ボタン 13</option>
+                    <option value="14">ボタン 14</option>
+                    <option value="15">ボタン 15</option>
+                    <option value="16">ボタン 16</option>
+                </select>
+            </div>
+            <div class="settings-item">
+                <input type="file" id="sound-file" accept="audio/*,.m4a">
+            </div>
+            <div class="settings-buttons">
+                <button class="btn-upload" onclick="uploadSound()">アップロード</button>
+                <button class="btn-back" onclick="showMain()">ホームに戻る</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="design-section" style="display: none;">
+        <div class="settings-container">
+            <h3>ボタンのデザイン変更</h3>
+            <div class="settings-item">
+                <label for="design-sound-selector">変更するボタンを選択してください:</label>
+                <select id="design-sound-selector">
+                    <option value="1">ボタン 1</option>
+                    <option value="2">ボタン 2</option>
+                    <option value="3">ボタン 3</option>
+                    <option value="4">ボタン 4</option>
+                    <option value="5">ボタン 5</option>
+                    <option value="6">ボタン 6</option>
+                    <option value="7">ボタン 7</option>
+                    <option value="8">ボタン 8</option>
+                    <option value="9">ボタン 9</option>
+                    <option value="10">ボタン 10</option>
+                    <option value="11">ボタン 11</option>
+                    <option value="12">ボタン 12</option>
+                    <option value="13">ボタン 13</option>
+                    <option value="14">ボタン 14</option>
+                    <option value="15">ボタン 15</option>
+                    <option value="16">ボタン 16</option>
+                </select>
+            </div>
+            <div class="settings-item">
+                <label for="icon-selector">アイコンを選択してください:</label>
                 <select id="icon-selector">
                     <option value="home">ホーム</option>
                     <option value="search">検索</option>
@@ -301,15 +369,22 @@
                     <option value="cloud">クラウド</option>
                     <option value="music_note">音楽</option>
                 </select>
-            </div><br>
-            <div id="sound-selector" class="settings-item">
-                <h5><label for="sound-file">音声ファイルのアップロード</label></h5>
-                <input type="file" id="sound-file" accept="audio/*,.m4a">
-            </div><br>
+            </div>
+            <div class="settings-buttons">
+                <button class="btn-update" onclick="updateDesign()">デザインを更新する</button>
+                <button class="btn-back" onclick="showMain()">ホームに戻る</button>
+            </div>
+        </div>
+    </section>
+    
+    <div id="color-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h3>ボタンの背景色を変更</h3><br>
+            <input type="color" id="color-input" value="#e57373">
             <div class="popup-buttons">
-                <button class="btn-change" onclick="changeButtonColor();updateDesign()">設定を変更</button>
+                <button class="btn-change" onclick="changeButtonColor()">背景色を変更</button>
                 <button class="btn-cancel" onclick="document.getElementById('color-popup').style.display='none'">キャンセル</button>
-            </div><br><br>
+            </div>
         </div>
     </div>
 
@@ -336,7 +411,7 @@
         // Variables to track long press and click
         let pressTimer;
         let isLongPress = false;
-        var selectedButton;
+        let selectedButton;
 
         // Function to play sound
         function playSound(soundFile) {
@@ -386,32 +461,14 @@
             const menu = document.querySelector('.menu');
             menu.classList.toggle('show');
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all buttons
-            var buttons = document.querySelectorAll('button');
-            
-            // Set click event listeners for each button
-            buttons.forEach(function(button) {
-            button.addEventListener('click', function(event) {
-                // Get the ID of the clicked button
-                var buttonId = event.target.id;
-                console.log('Button clicked:', buttonId);
-                
-                // Other attributes or information can also be retrieved if needed
-                var buttonText = event.target.textContent;
-                console.log('Button text:', buttonText);
-                });
-            });
-        });
-
+    
         // Function to upload sound
         function uploadSound() {
             const selector = document.getElementById('sound-selector');
             const fileInput = document.getElementById('sound-file');
             const selectedButton = selector.value;
             const file = fileInput.files[0];
-    
+
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
@@ -419,10 +476,32 @@
                     sounds[selectedButton] = soundUrl;
                     document.querySelector(`.btn${selectedButton}`).onclick = () => playSound(soundUrl);
                 };
+                console.log(file);
                 reader.readAsDataURL(file);
             } else {
                 alert('Please select a sound file to upload.');
             }
+        }
+    
+        // Function to show recording section
+        function showRecording() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('design-section').style.display = 'none';
+            document.getElementById('settings-section').style.display = 'block';
+        }
+    
+        // Function to show design section
+        function showDesign() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('settings-section').style.display = 'none';
+            document.getElementById('design-section').style.display = 'block';
+        }
+    
+        // Function to show main section
+        function showMain() {
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('design-section').style.display = 'none';
+            document.getElementById('settings-section').style.display = 'none';
         }
     
         // Function to update button design
