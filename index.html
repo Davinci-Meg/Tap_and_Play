@@ -217,7 +217,7 @@
             const fileInput = document.getElementById('sound-file');
             const selectedButton = selector.value;
             const file = fileInput.files[0];
-    
+
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
@@ -225,6 +225,7 @@
                     sounds[selectedButton] = soundUrl;
                     document.querySelector(`.btn${selectedButton}`).onclick = () => playSound(soundUrl);
                 };
+                console.log(file);
                 reader.readAsDataURL(file);
             } else {
                 alert('Please select a sound file to upload.');
