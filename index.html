@@ -4,7 +4,258 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sound Button</title>
-    <link rel="stylesheet" href="src/styles.css">
+    <style>
+        /* CSSリセット */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            user-select: none;
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            -moz-touch-callout:none;
+            -moz-user-select:none;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        .menu a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        main {
+            padding: 0;
+            height: calc(100vh - 50px); /* 50pxはheaderの高さを考慮 */
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            height: 100%;
+            width: 100%;
+        }
+
+        .button-grid button {
+            font-size: 18px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #333; /* ボタン間の境界線を追加 */
+        }
+
+        .button-grid .material-icons {
+            font-size: 36px;
+        }
+
+        .btn1 { background-color: #e57373; }
+        .btn2 { background-color: #f06292; }
+        .btn3 { background-color: #ba68c8; }
+        .btn4 { background-color: #9575cd; }
+        .btn5 { background-color: #7986cb; }
+        .btn6 { background-color: #64b5f6; }
+        .btn7 { background-color: #4fc3f7; }
+        .btn8 { background-color: #4dd0e1; }
+        .btn9 { background-color: #4db6ac; }
+        .btn10 { background-color: #81c784; }
+        .btn11 { background-color: #aed581; }
+        .btn12 { background-color: #dce775; }
+        .btn13 { background-color: #fff176; }
+        .btn14 { background-color: #ffd54f; }
+        .btn15 { background-color: #ffb74d; }
+        .btn16 { background-color: #ff8a65; }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .menu.show {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .button-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .settings-container {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .settings-item label {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .settings-item select,
+        .settings-item input {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .settings-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .settings-buttons button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .settings-buttons .btn-upload {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .settings-buttons .btn-back {
+            background-color: #2927a4;
+            color: white;
+        }
+
+        .settings-buttons .btn-update {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Popup Background */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        /* Popup Content */
+        .popup-content {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .popup h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Popup Buttons */
+        .popup-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .popup-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-change {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-cancel {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Button Hover Effects */
+        .popup-buttons button:hover {
+            opacity: 0.8;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -140,22 +391,22 @@
     <script>
         // Existing sounds object
         const sounds = {
-            1: 'assets/sound1.mp3',
-            2: 'assets/sound2.mp3',
-            3: 'assets/sound3.mp3',
-            4: 'assets/sound4.mp3',
-            5: 'assets/sound5.mp3',
-            6: 'assets/sound6.mp3',
-            7: 'assets/sound7.mp3',
-            8: 'assets/sound8.mp3',
-            9: 'assets/sound9.mp3',
-            10: 'assets/sound10.mp3',
-            11: 'assets/sound11.mp3',
-            12: 'assets/sound12.mp3',
-            13: 'assets/sound13.mp3',
-            14: 'assets/sound14.mp3',
-            15: 'assets/sound15.mp3',
-            16: 'assets/sound16.mp3'
+            1: '',
+            2: '',
+            3: '',
+            4: '',
+            5: '',
+            6: '',
+            7: '',
+            8: '',
+            9: '',
+            10: '',
+            11: '',
+            12: '',
+            13: '',
+            14: '',
+            15: '',
+            16: ''
         };
         // Variables to track long press and click
         let pressTimer;
@@ -211,7 +462,7 @@
             menu.classList.toggle('show');
         }
     
-        // Function to upload sound
+        // Update the uploadSound function to remove previously uploaded sound
         function uploadSound() {
             const selector = document.getElementById('sound-selector');
             const fileInput = document.getElementById('sound-file');
@@ -223,14 +474,18 @@
                 reader.onload = function(e) {
                     const soundUrl = e.target.result;
                     sounds[selectedButton] = soundUrl;
-                    document.querySelector(`.btn${selectedButton}`).onclick = () => playSound(soundUrl);
+                    document.querySelector(`.btn${selectedButton}`).onclick = () => {
+                        const audio = new Audio(soundUrl);
+                        audio.play();
+                    };
                 };
-                console.log(file);
                 reader.readAsDataURL(file);
             } else {
                 alert('Please select a sound file to upload.');
             }
         }
+
+
     
         // Function to show recording section
         function showRecording() {

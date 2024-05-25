@@ -391,22 +391,22 @@
     <script>
         // Existing sounds object
         const sounds = {
-            1: 'assets/sound1.mp3',
-            2: 'assets/sound2.mp3',
-            3: 'assets/sound3.mp3',
-            4: 'assets/sound4.mp3',
-            5: 'assets/sound5.mp3',
-            6: 'assets/sound6.mp3',
-            7: 'assets/sound7.mp3',
-            8: 'assets/sound8.mp3',
-            9: 'assets/sound9.mp3',
-            10: 'assets/sound10.mp3',
-            11: 'assets/sound11.mp3',
-            12: 'assets/sound12.mp3',
-            13: 'assets/sound13.mp3',
-            14: 'assets/sound14.mp3',
-            15: 'assets/sound15.mp3',
-            16: 'assets/sound16.mp3'
+            1: '',
+            2: '',
+            3: '',
+            4: '',
+            5: '',
+            6: '',
+            7: '',
+            8: '',
+            9: '',
+            10: '',
+            11: '',
+            12: '',
+            13: '',
+            14: '',
+            15: '',
+            16: ''
         };
         // Variables to track long press and click
         let pressTimer;
@@ -462,7 +462,7 @@
             menu.classList.toggle('show');
         }
     
-        // Function to upload sound
+        // Update the uploadSound function to remove previously uploaded sound
         function uploadSound() {
             const selector = document.getElementById('sound-selector');
             const fileInput = document.getElementById('sound-file');
@@ -474,14 +474,18 @@
                 reader.onload = function(e) {
                     const soundUrl = e.target.result;
                     sounds[selectedButton] = soundUrl;
-                    document.querySelector(`.btn${selectedButton}`).onclick = () => playSound(soundUrl);
+                    document.querySelector(`.btn${selectedButton}`).onclick = () => {
+                        const audio = new Audio(soundUrl);
+                        audio.play();
+                    };
                 };
-                console.log(file);
                 reader.readAsDataURL(file);
             } else {
                 alert('Please select a sound file to upload.');
             }
         }
+
+
     
         // Function to show recording section
         function showRecording() {
