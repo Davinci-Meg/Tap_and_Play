@@ -18,7 +18,7 @@ The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
 1. Access the [LINK]((https://davinci-meg.github.io/sound_button/)).
 2. Select the number of buttons(Within 1 to 10).
-3. Customize the buttons according to your needs.
+3. Press and hold the button you want to change, then customize it.
 
 ## Technologies Used
 
