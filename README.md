@@ -14,6 +14,12 @@ The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 - You can customize the background color, icon, and sound of each button.
 - Clicking on a button plays a specific sound.
 
+## Steps
+
+1. Access the [LINK]((https://davinci-meg.github.io/sound_button/)).
+2. Select the number of buttons(Within 1 to 10).
+3. Customize the buttons according to your needs.
+
 ## Technologies Used
 
 - HTML5

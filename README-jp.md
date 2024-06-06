@@ -13,6 +13,12 @@ English version is [here](https://github.com/Davinci-Meg/sound_button/blob/main/
 - 各ボタンの背景色、アイコン、音声はカスタマイズ可能です。
 - ボタンをクリックすると特定の音声が再生されます。
 
+## 利用方法
+
+1. [サイト](https://davinci-meg.github.io/sound_button/)へアクセスする
+2. ボタンの数を選択する(1~10個)
+3. 目的に応じてボタンをカスタマイズする
+
 ## 使用技術
 
 - HTML5
