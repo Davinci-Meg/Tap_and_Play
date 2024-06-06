@@ -446,21 +446,35 @@
             });
 
             // 長押しのイベントリスナー
-            button.addEventListener('mousedown', (event) => {
-                longPressedButton = event.target; // 長押しされたボタンを記録
-                longPressTimer = setTimeout(() => {
-                    showPopup();
-                }, longPressDuration);
-            });
-
-            button.addEventListener('mouseup', () => {
-                clearTimeout(longPressTimer);
-            });
-
-            button.addEventListener('mouseleave', () => {
-                clearTimeout(longPressTimer);
-            });
+            button.addEventListener('mousedown', handleMouseDown);
+            button.addEventListener('mouseup', handleMouseUp);
+            button.addEventListener('mouseleave', handleMouseUp);
+            button.addEventListener('touchstart', handleTouchStart);
+            button.addEventListener('touchend', handleTouchEnd);
+            button.addEventListener('touchcancel', handleTouchEnd);
         });
+
+        function handleMouseDown(event) {
+            longPressedButton = event.target;
+            longPressTimer = setTimeout(() => {
+                showPopup();
+            }, longPressDuration);
+        }
+
+        function handleMouseUp() {
+            clearTimeout(longPressTimer);
+        }
+
+        function handleTouchStart(event) {
+            longPressedButton = event.target;
+            longPressTimer = setTimeout(() => {
+                showPopup();
+            }, longPressDuration);
+        }
+
+        function handleTouchEnd() {
+            clearTimeout(longPressTimer);
+        }
 
         // ポップアップを表示する関数
         function showPopup() {
@@ -508,10 +522,8 @@
                     if (newSoundFile) {
                         const newSoundURL = URL.createObjectURL(newSoundFile);
                         buttonSounds[longPressedButton.className] = new Audio(newSoundURL);
-                        alert('音声が登録されました'); // ポップアップメッセージを表示
+                        alert('音声が正常に登録されました'); // ポップアップメッセージを表示
                     }
-
-                    document.getElementById('popup').style.display = 'none';
                 }
             });
         });
