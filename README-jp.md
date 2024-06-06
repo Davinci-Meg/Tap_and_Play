@@ -16,9 +16,10 @@ English version is [here](https://github.com/Davinci-Meg/sound_button/blob/main/
 ## 利用方法
 
 1. [サイト](https://davinci-meg.github.io/sound_button/)へアクセスする
-<img width="500" alt="" src="assets/image1.png">
 2. ボタンの数を選択する(1~10個)
+<img width="500" alt="" src="assets/image1.png">
 3. 目的に応じてボタンをカスタマイズする
+<img width="500" alt="" src="assets/image2.png">
 
 ## 使用技術
 
