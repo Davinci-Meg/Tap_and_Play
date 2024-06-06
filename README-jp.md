@@ -37,7 +37,7 @@ English version is [here](https://github.com/Davinci-Meg/sound_button/blob/main/
 
 ## 謝辞
 
-- このファイルは[英語版](https://github.com/Davinci-Meg/sound_button/blob/main/README.md)をChat-GPT 3.5によって翻訳されたものです。
+- このファイルは[英語版](https://github.com/Davinci-Meg/sound_button/blob/main/README.md)をChat-GPT 3.5によって翻訳したものです。
 - [Google Material Icons](https://fonts.google.com/icons)
 
 ## 制作者
