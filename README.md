@@ -27,6 +27,7 @@ The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
 ## System Requirements
 
+I strongly recommend using it on a computer.
 - Google Chrome
 - Safari
 
