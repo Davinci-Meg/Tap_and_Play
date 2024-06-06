@@ -25,6 +25,11 @@ The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 - **Icons**: To change the icons, modify the `span` elements within the buttons in `index.html`.
 - **Sounds**: Replace the sound files in the `sounds` directory and update the paths in the `onclick` attributes in `index.html`.
 
+## System Requirements
+
+- Google Chrome
+- Safari
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
