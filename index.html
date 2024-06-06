@@ -57,7 +57,7 @@
 
         main {
             padding: 0;
-            height: calc(100vh - 50px); /* 50pxはheaderの高さを考慮 */
+            height: calc(100vh);
         }
 
         .button-grid {
@@ -201,37 +201,129 @@
             z-index: 1000;
         }
 
+        .popup hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+
         /* Popup Content */
         .popup-content {
             background: #fff;
             border-radius: 10px;
             padding: 20px;
-            width: 300px;
+            width: 350px;
             margin: 0 auto;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             animation: fadeIn 0.3s;
         }
 
+        .popup-content input[type="color"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
         .popup h3 {
-            margin-top: 0;
+            margin-top: 5px;
             font-size: 18px;
             color: #333;
         }
 
         /* Popup Buttons */
-        .popup-buttons {
+        .popup-buttons-bgcolor {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
-        .popup-buttons button {
-            padding: 10px 20px;
+        /* Button Hover Effects */
+        .popup-buttons-bgcolor button:hover {
+            opacity: 0.8;
+        }
+
+        .popup-buttons-bgcolor button {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 100%;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 15px;
+            margin: auto;
+        }
+
+        /* Popup Buttons */
+        .popup-buttons-icon {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        /* Button Hover Effects */
+        .popup-buttons-icon button:hover {
+            opacity: 0.8;
+        }
+
+        .popup-buttons-icon button {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            margin: auto;
+        }
+
+        /* Popup Buttons */
+        .popup-buttons-music {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        /* Button Hover Effects */
+        .popup-buttons-music button:hover {
+            opacity: 0.8;
+        }
+
+        .popup-buttons-music button {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            margin: auto;
+        }
+
+        /* Popup Buttons */
+        .popup-buttons-close {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        /* Button Hover Effects */
+        .popup-buttons-close button:hover {
+            opacity: 0.8;
+        }
+
+        .popup-buttons-close button {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            margin: auto;
         }
 
         .btn-change {
@@ -240,13 +332,8 @@
         }
 
         .btn-cancel {
-            background-color: #4CAF50;
+            background-color: #2927a4;
             color: white;
-        }
-
-        /* Button Hover Effects */
-        .popup-buttons button:hover {
-            opacity: 0.8;
         }
 
         /* Animation */
@@ -259,16 +346,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-            <div class="menu">
-                <a href="#" onclick="showDesign()">デザイン</a>
-                <a href="#" onclick="showRecording()">録音</a>
-                <!-- <a href="src/index-en.html">English</a> -->
-            </div>
-        </nav>
-    </header>
     <main id="main-content">
         <div class="button-grid">
             <!-- 16 buttons with icons -->
@@ -290,67 +367,21 @@
             <button class="btn btn16" onclick="playSound(sounds[16])"><span class="material-icons">music_note</span></button>
         </div>
     </main>
-
-    <section id="settings-section" style="display: none;">
-        <div class="settings-container">
-            <h3>音声ファイルのアップロード</h3>
-            <div class="settings-item">
-                <label for="sound-selector">変更するボタンを選択してください:</label>
-                <select id="sound-selector">
-                    <option value="1">ボタン 1</option>
-                    <option value="2">ボタン 2</option>
-                    <option value="3">ボタン 3</option>
-                    <option value="4">ボタン 4</option>
-                    <option value="5">ボタン 5</option>
-                    <option value="6">ボタン 6</option>
-                    <option value="7">ボタン 7</option>
-                    <option value="8">ボタン 8</option>
-                    <option value="9">ボタン 9</option>
-                    <option value="10">ボタン 10</option>
-                    <option value="11">ボタン 11</option>
-                    <option value="12">ボタン 12</option>
-                    <option value="13">ボタン 13</option>
-                    <option value="14">ボタン 14</option>
-                    <option value="15">ボタン 15</option>
-                    <option value="16">ボタン 16</option>
-                </select>
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h2>ボタンの設定</h2>
+            <h3>背景色の変更</h3>
+            <input type="color" id="color-input">
+            <div class="popup-buttons-bgcolor">
+                <button class="btn-change" onclick="">
+                    <span class="material-icons">
+                        check
+                    </span>
+                </button>
             </div>
+            <hr>
+            <h3 style="margin-top: 30px;">アイコンの変更</h3>
             <div class="settings-item">
-                <input type="file" id="sound-file" accept="audio/*,.m4a">
-            </div>
-            <div class="settings-buttons">
-                <button class="btn-upload" onclick="uploadSound()">アップロード</button>
-                <button class="btn-back" onclick="showMain()">ホームに戻る</button>
-            </div>
-        </div>
-    </section>
-    
-    <section id="design-section" style="display: none;">
-        <div class="settings-container">
-            <h3>ボタンのデザイン変更</h3>
-            <div class="settings-item">
-                <label for="design-sound-selector">変更するボタンを選択してください:</label>
-                <select id="design-sound-selector">
-                    <option value="1">ボタン 1</option>
-                    <option value="2">ボタン 2</option>
-                    <option value="3">ボタン 3</option>
-                    <option value="4">ボタン 4</option>
-                    <option value="5">ボタン 5</option>
-                    <option value="6">ボタン 6</option>
-                    <option value="7">ボタン 7</option>
-                    <option value="8">ボタン 8</option>
-                    <option value="9">ボタン 9</option>
-                    <option value="10">ボタン 10</option>
-                    <option value="11">ボタン 11</option>
-                    <option value="12">ボタン 12</option>
-                    <option value="13">ボタン 13</option>
-                    <option value="14">ボタン 14</option>
-                    <option value="15">ボタン 15</option>
-                    <option value="16">ボタン 16</option>
-                </select>
-            </div>
-            <div class="settings-item">
-                <label for="icon-selector">アイコンを選択してください:</label>
                 <select id="icon-selector">
                     <option value="home">ホーム</option>
                     <option value="search">検索</option>
@@ -370,158 +401,132 @@
                     <option value="music_note">音楽</option>
                 </select>
             </div>
-            <div class="settings-buttons">
-                <button class="btn-update" onclick="updateDesign()">デザインを更新する</button>
-                <button class="btn-back" onclick="showMain()">ホームに戻る</button>
+            <div class="popup-buttons-icon">
+                <button class="btn-change" onclick="">
+                    <span class="material-icons">
+                        check
+                    </span>
+                </button>
             </div>
-        </div>
-    </section>
-    
-    <div id="color-popup" class="popup" style="display: none;">
-        <div class="popup-content">
-            <h3>ボタンの背景色を変更</h3><br>
-            <input type="color" id="color-input" value="#e57373">
-            <div class="popup-buttons">
-                <button class="btn-change" onclick="changeButtonColor()">背景色を変更</button>
-                <button class="btn-cancel" onclick="document.getElementById('color-popup').style.display='none'">キャンセル</button>
+            <hr>
+            <h3>音声の登録</h3>
+            <div class="settings-item">
+                <input type="file" id="sound-file" accept="audio/*,.m4a">
+            </div>
+            <div class="popup-buttons-music">
+                <button class="btn-change" onclick="">
+                    <span class="material-icons">
+                        check
+                    </span>
+                </button>
+            </div>
+            <hr>
+            <div class="popup-buttons-close">
+                <button class="btn-cancel" onclick="document.getElementById('popup').style.display='none'">
+                    <span class="material-icons">
+                        close
+                    </span>
+                </button>
             </div>
         </div>
     </div>
-
     <script>
-        // Existing sounds object
-        const sounds = {
-            1: '',
-            2: '',
-            3: '',
-            4: '',
-            5: '',
-            6: '',
-            7: '',
-            8: '',
-            9: '',
-            10: '',
-            11: '',
-            12: '',
-            13: '',
-            14: '',
-            15: '',
-            16: ''
-        };
-        // Variables to track long press and click
-        let pressTimer;
-        let isLongPress = false;
-        let selectedButton;
-
-        // Function to play sound
-        function playSound(soundFile) {
-            const audio = new Audio(soundFile);
-            audio.play();
-        }
-
-        // Function to show color change popup
-        function showColorPopup(button) {
-            selectedButton = button;
-            const popup = document.getElementById('color-popup');
-            popup.style.display = 'block';
-        }
-
-        // Function to change button color
-        function changeButtonColor() {
-            const colorInput = document.getElementById('color-input').value;
-            selectedButton.style.backgroundColor = colorInput;
-            document.getElementById('color-popup').style.display = 'none';
-        }
-
-        // Add event listeners for each button
+        let longPressTimer;
+        const longPressDuration = 500; // 長押しとみなす時間 (ミリ秒)
+        let longPressedButton; // 長押しされたボタンを記録
+        const buttonSounds = {}; // ボタンごとの音声ファイルを管理するオブジェクト
+    
+        // ボタンにイベントリスナーを追加
         document.querySelectorAll('.button-grid button').forEach(button => {
-            const soundFile = sounds[button.classList[1].replace('btn', '')];
-            
-            button.addEventListener('click', () => {
-                if (!isLongPress) {
-                    playSound(soundFile);
+            button.addEventListener('mousedown', (event) => {
+                longPressedButton = event.target; // 長押しされたボタンを記録
+                longPressTimer = setTimeout(() => {
+                    showPopup();
+                }, longPressDuration);
+            });
+    
+            button.addEventListener('mouseup', () => {
+                if (longPressTimer) {
+                    clearTimeout(longPressTimer);
+                    // 通常のクリックとして音声を再生
+                    if (buttonSounds[button.className]) {
+                        playSound(buttonSounds[button.className]);
+                    }
                 }
             });
-
-            button.addEventListener('mousedown', () => {
-                isLongPress = false;
-                pressTimer = setTimeout(() => {
-                    isLongPress = true;
-                    showColorPopup(button);
-                }, 1000);
+    
+            button.addEventListener('mouseleave', () => {
+                clearTimeout(longPressTimer);
             });
-
-            button.addEventListener('mouseup', () => clearTimeout(pressTimer));
-            button.addEventListener('mouseout', () => clearTimeout(pressTimer));
         });
-
-
-        // Function to toggle menu visibility
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            menu.classList.toggle('show');
+    
+        // ポップアップを表示する関数
+        function showPopup() {
+            // 長押しされたボタンの背景色を取得してcolor-inputのvalueに設定
+            const currentColor = window.getComputedStyle(longPressedButton).backgroundColor;
+            document.getElementById('color-input').value = rgbToHex(currentColor);
+    
+            // 長押しされたボタンのアイコンを取得してicon-selectorのvalueに設定
+            const currentIcon = longPressedButton.querySelector('.material-icons').textContent;
+            document.getElementById('icon-selector').value = currentIcon;
+    
+            // 長押しされたボタンに登録された音声ファイルを取得してsound-fileのvalueに設定
+            const currentSound = buttonSounds[longPressedButton.className];
+            const soundInput = document.getElementById('sound-file');
+            soundInput.value = '';
+            soundInput.setAttribute('data-sound', currentSound ? URL.createObjectURL(currentSound) : '');
+    
+            document.getElementById('popup').style.display = 'flex';
         }
     
-        // Update the uploadSound function to remove previously uploaded sound
-        function uploadSound() {
-            const selector = document.getElementById('sound-selector');
-            const fileInput = document.getElementById('sound-file');
-            const selectedButton = selector.value;
-            const file = fileInput.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const soundUrl = e.target.result;
-                    sounds[selectedButton] = soundUrl;
-                    document.querySelector(`.btn${selectedButton}`).onclick = () => {
-                        const audio = new Audio(soundUrl);
-                        audio.play();
-                    };
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert('Please select a sound file to upload.');
+        // RGBをHexに変換する関数
+        function rgbToHex(rgb) {
+            const result = rgb.match(/\d+/g).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
+            return `#${result}`;
+        }
+    
+        // 背景色のチェックボタンが押された時の処理
+        document.querySelectorAll('.popup-buttons-bgcolor .btn-change').forEach(button => {
+            button.addEventListener('click', () => {
+                const newColor = document.getElementById('color-input').value;
+                if (longPressedButton) {
+                    longPressedButton.style.backgroundColor = newColor;
+                }
+            });
+        });
+    
+        // アイコンのチェックボタンが押された時の処理
+        document.querySelectorAll('.popup-buttons-icon .btn-change').forEach(button => {
+            button.addEventListener('click', () => {
+                const newIcon = document.getElementById('icon-selector').value;
+                if (longPressedButton) {
+                    longPressedButton.querySelector('.material-icons').textContent = newIcon;
+                }
+            });
+        });
+    
+        // 音声ファイルのチェックボタンが押された時の処理
+        document.querySelectorAll('.popup-buttons-music .btn-change').forEach(button => {
+            button.addEventListener('click', () => {
+                const soundFile = document.getElementById('sound-file').files[0];
+                if (longPressedButton && soundFile) {
+                    buttonSounds[longPressedButton.className] = soundFile;
+                }
+            });
+        });
+    
+        // キャンセルボタンの処理
+        document.querySelector('.btn-cancel').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+        });
+    
+        // 音声を再生する関数
+        function playSound(soundFile) {
+            if (soundFile) {
+                const audio = new Audio(URL.createObjectURL(soundFile));
+                audio.play();
             }
         }
-
-
-    
-        // Function to show recording section
-        function showRecording() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('design-section').style.display = 'none';
-            document.getElementById('settings-section').style.display = 'block';
-        }
-    
-        // Function to show design section
-        function showDesign() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('settings-section').style.display = 'none';
-            document.getElementById('design-section').style.display = 'block';
-        }
-    
-        // Function to show main section
-        function showMain() {
-            document.getElementById('main-content').style.display = 'block';
-            document.getElementById('design-section').style.display = 'none';
-            document.getElementById('settings-section').style.display = 'none';
-        }
-    
-        // Function to update button design
-        function updateDesign() {
-            const buttonSelector = document.getElementById('design-sound-selector');
-            const iconSelector = document.getElementById('icon-selector');
-            const selectedButton = buttonSelector.value;
-            const selectedIcon = iconSelector.value;
-    
-            const buttonElement = document.querySelector(`.btn${selectedButton} span`);
-            if (buttonElement) {
-                buttonElement.textContent = selectedIcon;
-            } else {
-                alert('Failed to update button design. Please try again.');
-            }
-        }
-    </script>    
+    </script>
 </body>
 </html>
