@@ -1,4 +1,4 @@
-# Sound Button
+# Tap & Play
 
 [![MIT](https://custom-icon-badges.herokuapp.com/badge/license-MIT-8BB80A.svg?logo=law&logoColor=white)]()
 
