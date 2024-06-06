@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap and Play</title>
+    <style>
+        * {
+            font-family:"UD デジタル 教科書体 N-R", "BIZ UDゴシック Regular", "Hiragino Kaku Gothic ProN", "ascii";
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            user-select: none;
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            -moz-touch-callout:none;
+            -moz-user-select:none;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-grid {
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .button-grid button {
+            font-size: 18px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #333;
+        }
+
+        .button-grid .material-icons {
+            font-size: 36px;
+        }
+
+        .btn1 { background-color: #e57373; }
+        .btn2 { background-color: #f06292; }
+        .btn3 { background-color: #ba68c8; }
+        .btn4 { background-color: #9575cd; }
+        .btn5 { background-color: #7986cb; }
+        .btn6 { background-color: #64b5f6; }
+        .btn7 { background-color: #4fc3f7; }
+        .btn8 { background-color: #4dd0e1; }
+        .btn9 { background-color: #4db6ac; }
+        .btn10 { background-color: #81c784; }
+        .btn11 { background-color: #aed581; }
+        .btn12 { background-color: #dce775; }
+        .btn13 { background-color: #fff176; }
+        .btn14 { background-color: #ffd54f; }
+        .btn15 { background-color: #ffb74d; }
+        .btn16 { background-color: #ff8a65; }
+
+        @media (max-width: 768px) {
+            .button-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <main id="main-content">
+        <div class="button-grid" id="button-grid">
+            <button class="btn btn1"><span class="material-icons">home</span></button>
+            <button class="btn btn2"><span class="material-icons">search</span></button>
+            <button class="btn btn3"><span class="material-icons">settings</span></button>
+            <button class="btn btn4"><span class="material-icons">info</span></button>
+            <button class="btn btn5"><span class="material-icons">email</span></button>
+            <button class="btn btn6"><span class="material-icons">phone</span></button>
+            <button class="btn btn7"><span class="material-icons">map</span></button>
+            <button class="btn btn8"><span class="material-icons">shopping_cart</span></button>
+            <button class="btn btn9"><span class="material-icons">favorite</span></button>
+            <button class="btn btn10"><span class="material-icons">face</span></button>
+            <button class="btn btn11"><span class="material-icons">camera_alt</span></button>
+            <button class="btn btn12"><span class="material-icons">lock</span></button>
+            <button class="btn btn13"><span class="material-icons">help</span></button>
+            <button class="btn btn14"><span class="material-icons">notifications</span></button>
+            <button class="btn btn15"><span class="material-icons">cloud</span></button>
+            <button class="btn btn16"><span class="material-icons">music_note</span></button>
+        </div>
+    </main>
+    <script>
+        function setGridTemplate() {
+            const grid = document.getElementById('button-grid');
+            const buttonCount = grid.children.length;
+
+            if (buttonCount <= 4) {
+                grid.style.gridTemplateColumns = `repeat(${buttonCount}, 1fr)`;
+                grid.style.gridTemplateRows = '1fr';
+            } else if (buttonCount <= 6) {
+                grid.style.gridTemplateColumns = `repeat(${Math.ceil(buttonCount / 2)}, 1fr)`;
+                grid.style.gridTemplateRows = 'repeat(2, 1fr)';
+            } else if (buttonCount <= 9) {
+                grid.style.gridTemplateColumns = `repeat(${Math.ceil(buttonCount / 3)}, 1fr)`;
+                grid.style.gridTemplateRows = 'repeat(3, 1fr)';
+            } else if (buttonCount <= 16) {
+                grid.style.gridTemplateColumns = `repeat(${Math.ceil(buttonCount / 4)}, 1fr)`;
+                grid.style.gridTemplateRows = 'repeat(4, 1fr)';
+            }
+        }
+
+        setGridTemplate();
+        window.addEventListener('resize', setGridTemplate);
+    </script>
+</body>
+</html>
