@@ -4,7 +4,7 @@
 
 日本語版は[こちら](https://github.com/Davinci-Meg/Tap_and_Play/blob/main/README-jp.md)
 
-The [LINK](https://davinci-meg.github.io/sound_button/) is here.
+The [LINK](https://davinci-meg.github.io/Tap_and_Play/) is here.
 
 ## Features
 
@@ -16,7 +16,7 @@ The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
 ## Steps
 
-1. Access the [LINK]((https://davinci-meg.github.io/sound_button/)).
+1. Access the [LINK]((https://davinci-meg.github.io/Tap_and_Play/)).
 2. Select the number of buttons(Within 1 to 10).
 3. Press and hold the button you want to change, then customize it.
 

@@ -4,7 +4,7 @@
 
 English version is [here](https://github.com/Davinci-Meg/sound_button/blob/main/README.md).
 
-サイトへのアクセスは[こちら](https://davinci-meg.github.io/sound_button/)から
+サイトへのアクセスは[こちら](https://davinci-meg.github.io/Tap_and_Play/)から
 
 ## 仕様
 
@@ -15,7 +15,7 @@ English version is [here](https://github.com/Davinci-Meg/sound_button/blob/main/
 
 ## 利用方法
 
-1. [サイト](https://davinci-meg.github.io/sound_button/)へアクセスする
+1. [サイト](https://davinci-meg.github.io/Tap_and_Play/)へアクセスする
 
 2. ボタンの数を選択する(1~10個)
 <img width="500" alt="" src="assets/image1.png">
