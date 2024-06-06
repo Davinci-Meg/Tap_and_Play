@@ -434,99 +434,92 @@
         let longPressTimer;
         const longPressDuration = 500; // 長押しとみなす時間 (ミリ秒)
         let longPressedButton; // 長押しされたボタンを記録
-        const buttonSounds = {}; // ボタンごとの音声ファイルを管理するオブジェクト
-    
+        const buttonSounds = {}; // ボタンに対応する音声を記録するオブジェクト
+
         // ボタンにイベントリスナーを追加
         document.querySelectorAll('.button-grid button').forEach(button => {
+            // 通常のクリックで音声再生
+            button.addEventListener('click', (event) => {
+                if (buttonSounds[button.className]) {
+                    buttonSounds[button.className].play();
+                }
+            });
+
+            // 長押しのイベントリスナー
             button.addEventListener('mousedown', (event) => {
                 longPressedButton = event.target; // 長押しされたボタンを記録
                 longPressTimer = setTimeout(() => {
                     showPopup();
                 }, longPressDuration);
             });
-    
+
             button.addEventListener('mouseup', () => {
-                if (longPressTimer) {
-                    clearTimeout(longPressTimer);
-                    // 通常のクリックとして音声を再生
-                    if (buttonSounds[button.className]) {
-                        playSound(buttonSounds[button.className]);
-                    }
-                }
+                clearTimeout(longPressTimer);
             });
-    
+
             button.addEventListener('mouseleave', () => {
                 clearTimeout(longPressTimer);
             });
         });
-    
+
         // ポップアップを表示する関数
         function showPopup() {
             // 長押しされたボタンの背景色を取得してcolor-inputのvalueに設定
             const currentColor = window.getComputedStyle(longPressedButton).backgroundColor;
             document.getElementById('color-input').value = rgbToHex(currentColor);
-    
+
             // 長押しされたボタンのアイコンを取得してicon-selectorのvalueに設定
-            const currentIcon = longPressedButton.querySelector('.material-icons').textContent;
+            const currentIcon = longPressedButton.querySelector('.material-icons').innerText;
             document.getElementById('icon-selector').value = currentIcon;
-    
-            // 長押しされたボタンに登録された音声ファイルを取得してsound-fileのvalueに設定
-            const currentSound = buttonSounds[longPressedButton.className];
+
+            // 長押しされたボタンの音声を設定
             const soundInput = document.getElementById('sound-file');
-            soundInput.value = '';
-            soundInput.setAttribute('data-sound', currentSound ? URL.createObjectURL(currentSound) : '');
-    
+            if (buttonSounds[longPressedButton.className]) {
+                soundInput.value = buttonSounds[longPressedButton.className].src;
+            } else {
+                soundInput.value = ''; // 何も登録されていない場合は空にする
+            }
+
             document.getElementById('popup').style.display = 'flex';
         }
-    
+
         // RGBをHexに変換する関数
         function rgbToHex(rgb) {
             const result = rgb.match(/\d+/g).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
             return `#${result}`;
         }
-    
-        // 背景色のチェックボタンが押された時の処理
-        document.querySelectorAll('.popup-buttons-bgcolor .btn-change').forEach(button => {
+
+        // チェックボタンが押された時の処理
+        document.querySelectorAll('.btn-change').forEach(button => {
             button.addEventListener('click', () => {
                 const newColor = document.getElementById('color-input').value;
-                if (longPressedButton) {
-                    longPressedButton.style.backgroundColor = newColor;
-                }
-            });
-        });
-    
-        // アイコンのチェックボタンが押された時の処理
-        document.querySelectorAll('.popup-buttons-icon .btn-change').forEach(button => {
-            button.addEventListener('click', () => {
                 const newIcon = document.getElementById('icon-selector').value;
+                const newSoundFile = document.getElementById('sound-file').files[0];
+
                 if (longPressedButton) {
-                    longPressedButton.querySelector('.material-icons').textContent = newIcon;
+                    // 背景色の変更
+                    longPressedButton.style.backgroundColor = newColor;
+
+                    // アイコンの変更
+                    const iconElement = longPressedButton.querySelector('.material-icons');
+                    iconElement.innerText = newIcon;
+
+                    // 音声の変更
+                    if (newSoundFile) {
+                        const newSoundURL = URL.createObjectURL(newSoundFile);
+                        buttonSounds[longPressedButton.className] = new Audio(newSoundURL);
+                        alert('音声が登録されました'); // ポップアップメッセージを表示
+                    }
+
+                    document.getElementById('popup').style.display = 'none';
                 }
             });
         });
-    
-        // 音声ファイルのチェックボタンが押された時の処理
-        document.querySelectorAll('.popup-buttons-music .btn-change').forEach(button => {
-            button.addEventListener('click', () => {
-                const soundFile = document.getElementById('sound-file').files[0];
-                if (longPressedButton && soundFile) {
-                    buttonSounds[longPressedButton.className] = soundFile;
-                }
-            });
-        });
-    
+
         // キャンセルボタンの処理
         document.querySelector('.btn-cancel').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
         });
-    
-        // 音声を再生する関数
-        function playSound(soundFile) {
-            if (soundFile) {
-                const audio = new Audio(URL.createObjectURL(soundFile));
-                audio.play();
-            }
-        }
     </script>
 </body>
 </html>
