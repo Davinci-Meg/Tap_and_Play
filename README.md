@@ -2,16 +2,14 @@
 
 [![MIT](https://custom-icon-badges.herokuapp.com/badge/license-MIT-8BB80A.svg?logo=law&logoColor=white)]()
 
-This project demonstrates a responsive web layout featuring a top navigation bar with a hamburger menu, and a grid of the buttons each displaying a different Material Design icon. Clicking each button plays a distinct sound.
-
 The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
 ## Features
 
-- Responsive top navigation bar with a hamburger menu
-- The buttons arranged in a grid, covering the full screen below the navigation bar
-- Each button has a unique color and Material Design icon
-- Clicking on a button plays a specific sound
+- The buttons arranged in a grid, covering the full screen.
+- Each button has a unique color and Material Design icon.
+- You can customize the background color, icon, and sound of each button.
+- Clicking on a button plays a specific sound.
 
 ## Technologies Used
 
