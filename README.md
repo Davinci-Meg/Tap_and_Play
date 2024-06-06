@@ -2,6 +2,8 @@
 
 [![MIT](https://custom-icon-badges.herokuapp.com/badge/license-MIT-8BB80A.svg?logo=law&logoColor=white)]()
 
+日本語版は[こちら]()
+
 The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
 ## Features
@@ -37,7 +39,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgements
 
 - [Google Material Icons](https://fonts.google.com/icons)
-- Inspired by various web design tutorials and resources.
 
 ## Author
 
