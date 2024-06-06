@@ -6,7 +6,7 @@ The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
 ## Features
 
-- The buttons arranged in a grid, covering the full screen.
+- The buttons arranged in a grid, covering the full screen(as possible).
 - Each button has a unique color and Material Design icon.
 - You can customize the background color, icon, and sound of each button.
 - Clicking on a button plays a specific sound.
