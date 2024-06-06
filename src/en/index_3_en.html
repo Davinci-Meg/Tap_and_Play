@@ -62,7 +62,7 @@
 
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             height: 100%;
             width: 100%;
         }
@@ -118,7 +118,7 @@
             }
 
             .button-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(1, 1fr);
             }
         }
 
@@ -352,24 +352,12 @@
             <button class="btn btn1" onclick="playSound(sounds[1])"><span class="material-icons">home</span></button>
             <button class="btn btn2" onclick="playSound(sounds[2])"><span class="material-icons">search</span></button>
             <button class="btn btn3" onclick="playSound(sounds[3])"><span class="material-icons">settings</span></button>
-            <button class="btn btn4" onclick="playSound(sounds[4])"><span class="material-icons">info</span></button>
-            <button class="btn btn5" onclick="playSound(sounds[5])"><span class="material-icons">email</span></button>
-            <button class="btn btn6" onclick="playSound(sounds[6])"><span class="material-icons">phone</span></button>
-            <button class="btn btn7" onclick="playSound(sounds[7])"><span class="material-icons">map</span></button>
-            <button class="btn btn8" onclick="playSound(sounds[8])"><span class="material-icons">shopping_cart</span></button>
-            <button class="btn btn9" onclick="playSound(sounds[9])"><span class="material-icons">favorite</span></button>
-            <button class="btn btn10" onclick="playSound(sounds[10])"><span class="material-icons">face</span></button>
-            <button class="btn btn11" onclick="playSound(sounds[11])"><span class="material-icons">camera_alt</span></button>
-            <button class="btn btn12" onclick="playSound(sounds[12])"><span class="material-icons">lock</span></button>
-            <button class="btn btn13" onclick="playSound(sounds[13])"><span class="material-icons">help</span></button>
-            <button class="btn btn14" onclick="playSound(sounds[14])"><span class="material-icons">notifications</span></button>
-            <button class="btn btn15" onclick="playSound(sounds[15])"><span class="material-icons">cloud</span></button>
         </div>
     </main>
     <div id="popup" class="popup" style="display: none;">
         <div class="popup-content">
-            <h2>ボタンの設定</h2>
-            <h3 style="margin-top: 20px;">背景色の変更</h3>
+            <h2>Button Settings</h2>
+            <h3 style="margin-top: 20px;">Change Background Color</h3>
             <input type="color" id="color-input" style="margin-top: 10px;">
             <div class="popup-buttons-bgcolor">
                 <button class="btn-change" onclick="">
@@ -379,25 +367,25 @@
                 </button>
             </div>
             <hr>
-            <h3 style="margin-top: 30px;">アイコンの変更</h3>
+            <h3 style="margin-top: 30px;">Change Icon</h3>
             <div class="settings-item">
                 <select id="icon-selector" style="margin-top: 10px;">
-                    <option value="home">ホーム</option>
-                    <option value="search">検索</option>
-                    <option value="settings">設定</option>
-                    <option value="info">情報</option>
-                    <option value="email">メール</option>
-                    <option value="phone">電話</option>
-                    <option value="map">地図</option>
-                    <option value="shopping_cart">ショッピングカート</option>
-                    <option value="favorite">お気に入り</option>
-                    <option value="face">顔</option>
-                    <option value="camera_alt">カメラ</option>
-                    <option value="lock">ロック</option>
-                    <option value="help">ヘルプ</option>
-                    <option value="notifications">通知</option>
-                    <option value="cloud">クラウド</option>
-                    <option value="music_note">音楽</option>
+                    <option value="home">Home</option>
+                    <option value="search">Search</option>
+                    <option value="settings">Settings</option>
+                    <option value="info">Info</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                    <option value="map">Map</option>
+                    <option value="shopping_cart">Shopping Cart</option>
+                    <option value="favorite">Favorite</option>
+                    <option value="face">Face</option>
+                    <option value="camera_alt">Camera</option>
+                    <option value="lock">Lock</option>
+                    <option value="help">Help</option>
+                    <option value="notifications">Notifications</option>
+                    <option value="cloud">Cloud</option>
+                    <option value="music_note">Music</option>
                 </select>
             </div>
             <div class="popup-buttons-icon">
@@ -408,7 +396,7 @@
                 </button>
             </div>
             <hr>
-            <h3>音声の登録</h3>
+            <h3>Register Sound</h3>
             <div class="settings-item">
                 <input type="file" id="sound-file" accept="audio/*,.m4a" style="margin-top: 10px;">
             </div>
