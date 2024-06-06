@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Buttons with Sound and Icons</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .button-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            font-size: 2em;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .settings {
+            padding: 10px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .settings button {
+            margin: 0 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings">
+        <button onclick="changeGrid(2)">2 Buttons</button>
+        <button onclick="changeGrid(4)">4 Buttons</button>
+        <button onclick="changeGrid(9)">9 Buttons</button>
+    </div>
+    <div class="button-container" id="button-container">
+        <!-- Buttons will be inserted here -->
+    </div>
+    
+    <audio id="audio1" src="sound1.mp3"></audio>
+    <audio id="audio2" src="sound2.mp3"></audio>
+
+    <script>
+        const buttonContainer = document.getElementById('button-container');
+        const defaultButtonCount = 9;
+        const sounds = ["audio1", "audio2"];
+
+        function createButton(id) {
+            const button = document.createElement('button');
+            button.className = 'button';
+            button.innerHTML = '<span class="material-icons">home</span>';
+            button.addEventListener('click', () => {
+                document.getElementById(sounds[id % sounds.length]).play();
+            });
+            button.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                showSettings(id, button);
+            });
+            return button;
+        }
+
+        function changeGrid(count) {
+            buttonContainer.innerHTML = '';
+            buttonContainer.style.gridTemplateColumns = `repeat(${Math.sqrt(count)}, 1fr)`;
+            for (let i = 0; i < count; i++) {
+                buttonContainer.appendChild(createButton(i));
+            }
+        }
+
+        function showSettings(id, button) {
+            const icon = prompt("Enter icon name (from Material Icons):", "home");
+            const color = prompt("Enter button color (CSS color value):", "#007BFF");
+            const sound = prompt("Enter sound file name (without extension):", `sound${(id % sounds.length) + 1}`);
+            
+            if (icon) button.innerHTML = `<span class="material-icons">${icon}</span>`;
+            if (color) button.style.backgroundColor = color;
+            if (sound) {
+                const audio = document.getElementById(sounds[id % sounds.length]);
+                audio.src = `${sound}.mp3`;
+            }
+        }
+
+        window.onload = () => changeGrid(defaultButtonCount);
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Long Press Button</title>
+</head>
+<body>
+    <button id="bt-prac">長押しでアラート</button>
+    <p id="op-prac">.</p>
+    <script>
+          const check_sec = 500; //ミリ秒
+            const target_element = document.getElementById('bt-prac');
+            const op_prac = document.getElementById('op-prac');
+            
+            long_press(target_element, normal_func, long_func, check_sec);
+
+            function normal_func(){
+                op_prac.textContent = '通常のクリック or タップ';
+            }
+            function long_func(){
+                op_prac.textContent = '.';
+                window.alert('長押ししました');
+            }
+    </script>
+</body>
+
+</html>

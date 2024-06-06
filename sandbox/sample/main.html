@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Buttons</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="button-container"></div>
+
+    <!-- Setting Modal -->
+    <div id="setting-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div>
+                <label for="icon-input">Icon Name:</label>
+                <input type="text" id="icon-input">
+            </div>
+            <div>
+                <label for="color-input">Button Color:</label>
+                <input type="color" id="color-input">
+            </div>
+            <div>
+                <label for="audio-input">Audio File URL:</label>
+                <input type="text" id="audio-input">
+            </div>
+            <button id="save-settings">Save</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
