@@ -6,6 +6,7 @@ The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
 ## Features
 
+- This application is designed for situations where language communication is difficult.
 - The buttons arranged in a grid, covering the full screen(as possible).
 - Each button has a unique color and Material Design icon.
 - You can customize the background color, icon, and sound of each button.
