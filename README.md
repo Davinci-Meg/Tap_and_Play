@@ -2,7 +2,7 @@
 
 [![MIT](https://custom-icon-badges.herokuapp.com/badge/license-MIT-8BB80A.svg?logo=law&logoColor=white)]()
 
-日本語版は[こちら]()
+日本語版は[こちら](https://github.com/Davinci-Meg/Tap_and_Play/blob/main/README-jp.md)
 
 The [LINK](https://davinci-meg.github.io/sound_button/) is here.
 
