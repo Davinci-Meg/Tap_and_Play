@@ -441,36 +441,10 @@
             button.addEventListener('touchstart', handleTouchStart);
             button.addEventListener('touchend', handleTouchEnd);
             button.addEventListener('touchcancel', handleTouchEnd);
-    
-            // アイコンエリアの長押しイベントリスナー
-            button.querySelector('.material-icons').addEventListener('mousedown', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleMouseDown(event);
-            });
-            button.querySelector('.material-icons').addEventListener('mouseup', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleMouseUp(event);
-            });
-            button.querySelector('.material-icons').addEventListener('mouseleave', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleMouseUp(event);
-            });
-            button.querySelector('.material-icons').addEventListener('touchstart', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleTouchStart(event);
-            });
-            button.querySelector('.material-icons').addEventListener('touchend', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleTouchEnd(event);
-            });
-            button.querySelector('.material-icons').addEventListener('touchcancel', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleTouchEnd(event);
-            });
         });
     
         function handleMouseDown(event) {
-            longPressedButton = event.target.closest('button');
+            longPressedButton = event.target.closest('button'); // closest()を使用してbutton要素を取得
             longPressTimer = setTimeout(() => {
                 showPopup();
             }, longPressDuration);
@@ -481,7 +455,7 @@
         }
     
         function handleTouchStart(event) {
-            longPressedButton = event.target.closest('button');
+            longPressedButton = event.target.closest('button'); // closest()を使用してbutton要素を取得
             longPressTimer = setTimeout(() => {
                 showPopup();
             }, longPressDuration);
@@ -504,7 +478,7 @@
             // 長押しされたボタンの音声を設定
             const soundInput = document.getElementById('sound-file');
             if (buttonSounds[longPressedButton.className]) {
-                soundInput.value = buttonSounds[longPressedButton.className].src;
+                soundInput.value = ''; // ファイル入力をリセット
             } else {
                 soundInput.value = ''; // 何も登録されていない場合は空にする
             }
@@ -548,6 +522,5 @@
             document.getElementById('popup').style.display = 'none';
         });
     </script>
-    
 </body>
 </html>

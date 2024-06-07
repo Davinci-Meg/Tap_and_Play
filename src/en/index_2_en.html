@@ -421,13 +421,12 @@
         const longPressDuration = 500; // 長押しとみなす時間 (ミリ秒)
         let longPressedButton; // 長押しされたボタンを記録
         const buttonSounds = {}; // ボタンに対応する音声を記録するオブジェクト
-        let isLongPress = false; // 長押しが発生したかどうかのフラグ
     
         // ボタンにイベントリスナーを追加
         document.querySelectorAll('.button-grid button').forEach(button => {
             // 通常のクリックで音声再生
             button.addEventListener('click', (event) => {
-                if (!isLongPress && buttonSounds[button.className]) {
+                if (buttonSounds[button.className]) {
                     buttonSounds[button.className].play();
                 }
             });
@@ -439,39 +438,11 @@
             button.addEventListener('touchstart', handleTouchStart);
             button.addEventListener('touchend', handleTouchEnd);
             button.addEventListener('touchcancel', handleTouchEnd);
-    
-            // アイコンエリアの長押しイベントリスナー
-            button.querySelector('.material-icons').addEventListener('mousedown', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleMouseDown(event);
-            });
-            button.querySelector('.material-icons').addEventListener('mouseup', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleMouseUp(event);
-            });
-            button.querySelector('.material-icons').addEventListener('mouseleave', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleMouseUp(event);
-            });
-            button.querySelector('.material-icons').addEventListener('touchstart', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleTouchStart(event);
-            });
-            button.querySelector('.material-icons').addEventListener('touchend', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleTouchEnd(event);
-            });
-            button.querySelector('.material-icons').addEventListener('touchcancel', (event) => {
-                event.stopPropagation(); // 親要素のイベントを停止
-                handleTouchEnd(event);
-            });
         });
     
         function handleMouseDown(event) {
-            isLongPress = false;
-            longPressedButton = event.target.closest('button');
+            longPressedButton = event.target.closest('button'); // closest()を使用してbutton要素を取得
             longPressTimer = setTimeout(() => {
-                isLongPress = true;
                 showPopup();
             }, longPressDuration);
         }
@@ -481,10 +452,8 @@
         }
     
         function handleTouchStart(event) {
-            isLongPress = false;
-            longPressedButton = event.target.closest('button');
+            longPressedButton = event.target.closest('button'); // closest()を使用してbutton要素を取得
             longPressTimer = setTimeout(() => {
-                isLongPress = true;
                 showPopup();
             }, longPressDuration);
         }
@@ -506,7 +475,7 @@
             // 長押しされたボタンの音声を設定
             const soundInput = document.getElementById('sound-file');
             if (buttonSounds[longPressedButton.className]) {
-                soundInput.value = buttonSounds[longPressedButton.className].src;
+                soundInput.value = ''; // ファイル入力をリセット
             } else {
                 soundInput.value = ''; // 何も登録されていない場合は空にする
             }
@@ -550,6 +519,5 @@
             document.getElementById('popup').style.display = 'none';
         });
     </script>
-    
 </body>
 </html>
