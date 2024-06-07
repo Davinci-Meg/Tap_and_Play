@@ -421,12 +421,13 @@
         const longPressDuration = 500; // 長押しとみなす時間 (ミリ秒)
         let longPressedButton; // 長押しされたボタンを記録
         const buttonSounds = {}; // ボタンに対応する音声を記録するオブジェクト
+        let isLongPress = false; // 長押しが発生したかどうかのフラグ
     
         // ボタンにイベントリスナーを追加
         document.querySelectorAll('.button-grid button').forEach(button => {
             // 通常のクリックで音声再生
             button.addEventListener('click', (event) => {
-                if (buttonSounds[button.className]) {
+                if (!isLongPress && buttonSounds[button.className]) {
                     buttonSounds[button.className].play();
                 }
             });
@@ -467,8 +468,10 @@
         });
     
         function handleMouseDown(event) {
+            isLongPress = false;
             longPressedButton = event.target.closest('button');
             longPressTimer = setTimeout(() => {
+                isLongPress = true;
                 showPopup();
             }, longPressDuration);
         }
@@ -478,8 +481,10 @@
         }
     
         function handleTouchStart(event) {
+            isLongPress = false;
             longPressedButton = event.target.closest('button');
             longPressTimer = setTimeout(() => {
+                isLongPress = true;
                 showPopup();
             }, longPressDuration);
         }
