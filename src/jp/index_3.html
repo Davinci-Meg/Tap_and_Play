@@ -151,7 +151,8 @@
         }
 
         .settings-item select,
-        .settings-item input {
+        .settings-item  textarea {
+            margin-top: 0.7rem;
             padding: 0.5rem;
             font-size: 1rem;
             border: 1px solid #ccc;
@@ -349,9 +350,9 @@
     <main id="main-content">
         <div class="button-grid">
             <!-- 16 buttons with icons -->
-            <button class="btn btn1" onclick="playSound(sounds[1])"><span class="material-icons">home</span></button>
-            <button class="btn btn2" onclick="playSound(sounds[2])"><span class="material-icons">search</span></button>
-            <button class="btn btn3" onclick="playSound(sounds[3])"><span class="material-icons">settings</span></button>
+            <button class="btn btn1"><span class="material-icons">home</span></button>
+            <button class="btn btn2"><span class="material-icons">search</span></button>
+            <button class="btn btn3"><span class="material-icons">settings</span></button>
         </div>
     </main>
     <div id="popup" class="popup" style="display: none;">
@@ -396,9 +397,9 @@
                 </button>
             </div>
             <hr>
-            <h3>音声の登録</h3>
+            <h3>テキストの登録</h3>
             <div class="settings-item">
-                <input type="file" id="sound-file" accept="audio/*,.m4a" style="margin-top: 10px;">
+                <textarea id="sound-text" rows="4"></textarea>
             </div>
             <div class="popup-buttons-music">
                 <button class="btn-change" onclick="">
@@ -427,8 +428,12 @@
         document.querySelectorAll('.button-grid button').forEach(button => {
             // 通常のクリックで音声再生
             button.addEventListener('click', (event) => {
-                if (buttonSounds[button.className]) {
-                    buttonSounds[button.className].play();
+                const soundText = localStorage.getItem(`soundText_${button.className}`);
+                console.log(soundText);
+                if (soundText) {
+                    const utterance = new SpeechSynthesisUtterance(soundText);
+                    // console.log(utterance);
+                    speechSynthesis.speak(utterance);
                 }
             });
     
@@ -473,14 +478,8 @@
             const currentIcon = longPressedButton.querySelector('.material-icons').innerText;
             document.getElementById('icon-selector').value = currentIcon;
     
-            // 長押しされたボタンの音声を設定
-            const soundInput = document.getElementById('sound-file');
-            if (buttonSounds[longPressedButton.className]) {
-                soundInput.value = ''; // ファイル入力をリセット
-            } else {
-                soundInput.value = ''; // 何も登録されていない場合は空にする
-            }
-    
+            // 長押しされたボタンのテキストを設定
+            const soundInput = document.getElementById('sound-text');
             document.getElementById('popup').style.display = 'flex';
         }
     
@@ -495,7 +494,7 @@
             button.addEventListener('click', () => {
                 const newColor = document.getElementById('color-input').value;
                 const newIcon = document.getElementById('icon-selector').value;
-                const newSoundFile = document.getElementById('sound-file').files[0];
+                const newSoundText = document.getElementById('sound-text').files[0];
     
                 if (longPressedButton) {
                     // 背景色の変更
@@ -504,21 +503,34 @@
                     // アイコンの変更
                     const iconElement = longPressedButton.querySelector('.material-icons');
                     iconElement.innerText = newIcon;
-    
-                    // 音声の変更
-                    if (newSoundFile) {
-                        const newSoundURL = URL.createObjectURL(newSoundFile);
-                        buttonSounds[longPressedButton.className] = new Audio(newSoundURL);
-                        alert('音声が正常に登録されました'); // ポップアップメッセージを表示
-                    }
                 }
             });
         });
-    
+        // テキストの保存ボタンの処理
+        document.querySelector('.popup-buttons-music .btn-change').addEventListener('click', () => {
+            const soundText = document.getElementById('sound-text').value;
+            if (longPressedButton) {
+                localStorage.setItem(`soundText_${longPressedButton.className}`, soundText);
+                alert('テキストが保存されました');
+            }
+        });
+
+        // ポップアップを表示する関数の中で、Local Storageからテキストを取得して表示
+        function showPopup() {
+            // 既存のコード...
+
+            // 長押しされたボタンのテキストを取得してsound-textのvalueに設定
+            const savedText = localStorage.getItem(`soundText_${longPressedButton.className}`);
+            document.getElementById('sound-text').value = savedText || '';
+
+            document.getElementById('popup').style.display = 'flex';
+        }
+
         // キャンセルボタンの処理
         document.querySelector('.btn-cancel').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
         });
+        
     </script>
 </body>
 </html>
