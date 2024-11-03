@@ -19,10 +19,10 @@ The [LINK](https://davinci-meg.github.io/Tap_and_Play/) is here.
 1. Access the [LINK]((https://davinci-meg.github.io/Tap_and_Play/)).
 
 2. Select the number of buttons(Within 1 to 10).
-<img width="500" alt="" src="assets/image1_en.png">
+<img width="500" alt="" src="assets/img/image1_en.png">
 
 3. Press and hold the button you want to change, then customize it.
-<img width="500" alt="" src="assets/image2_en.png">
+<img width="500" alt="" src="assets/img/image2_en.png">
 
 ## Technologies Used
 
