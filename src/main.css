@@ -52,12 +52,12 @@ main {
     height: calc(100vh);
 }
 
-.button-grid {
+/* .button-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     height: 100%;
     width: 100%;
-}
+} */
 
 .button-grid button {
     font-size: 18px;
@@ -94,7 +94,7 @@ main {
 .btn15 { background-color: #ffb74d; }
 .btn16 { background-color: #ff8a65; }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .menu {
         display: none;
         flex-direction: column;
@@ -112,7 +112,7 @@ main {
     .button-grid {
         grid-template-columns: repeat(1, 1fr);
     }
-}
+} */
 
 @media (max-width: 480px) {
     .button-grid {

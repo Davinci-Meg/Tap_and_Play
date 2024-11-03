@@ -1,107 +1,16 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tap & Play</title>
     <style>
-        /* CSSリセット */
-        * {
-            font-family:"UD デジタル 教科書体 N-R", "BIZ UDゴシック Regular", "Hiragino Kaku Gothic ProN", "ascii";
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            user-select: none;
-            -webkit-touch-callout:none;
-            -webkit-user-select:none;
-            -moz-touch-callout:none;
-            -moz-user-select:none;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
-        }
-
-        .menu {
-            display: flex;
-            gap: 15px;
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            padding: 5px 10px;
-        }
-
-        .menu a:hover {
-            background-color: #575757;
-            border-radius: 5px;
-        }
-
-        main {
-            padding: 0;
-            height: calc(100vh);
-        }
-
         .button-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             height: 100%;
             width: 100%;
         }
-
-        .button-grid button {
-            font-size: 18px;
-            border: none;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px solid #333; /* ボタン間の境界線を追加 */
-        }
-
-        .button-grid .material-icons {
-            font-size: 77px;
-        }
-
-        .btn1 { background-color: #e57373; }
-        .btn2 { background-color: #f06292; }
-        .btn3 { background-color: #ba68c8; }
-        .btn4 { background-color: #9575cd; }
-        .btn5 { background-color: #7986cb; }
-        .btn6 { background-color: #64b5f6; }
-        .btn7 { background-color: #4fc3f7; }
-        .btn8 { background-color: #4dd0e1; }
-        .btn9 { background-color: #4db6ac; }
-        .btn10 { background-color: #81c784; }
-        .btn11 { background-color: #aed581; }
-        .btn12 { background-color: #dce775; }
-        .btn13 { background-color: #fff176; }
-        .btn14 { background-color: #ffd54f; }
-        .btn15 { background-color: #ffb74d; }
-        .btn16 { background-color: #ff8a65; }
-
         @media (max-width: 768px) {
             .menu {
                 display: none;
@@ -121,233 +30,19 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        .settings-container {
-            display: flex;
-            text-align: center;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-            background: #f9f9f9;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .settings-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .settings-item label {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .settings-item select,
-        .settings-item input {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .settings-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .settings-buttons button {
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .settings-buttons .btn-upload {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .settings-buttons .btn-back {
-            background-color: #2927a4;
-            color: white;
-        }
-
-        .settings-buttons .btn-update {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        /* Popup Background */
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .popup hr {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border: 0;
-            border-top: 1px solid #ccc;
-        }
-
-        /* Popup Content */
-        .popup-content {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            width: 350px;
-            margin: 0 auto;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            animation: fadeIn 0.3s;
-        }
-
-        .popup-content input[type="color"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .popup h3 {
-            margin-top: 5px;
-            font-size: 18px;
-            color: #333;
-        }
-
-        /* Popup Buttons */
-        .popup-buttons-bgcolor {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        /* Button Hover Effects */
-        .popup-buttons-bgcolor button:hover {
-            opacity: 0.8;
-        }
-
-        .popup-buttons-bgcolor button {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            margin: auto;
-        }
-
-        /* Popup Buttons */
-        .popup-buttons-icon {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        /* Button Hover Effects */
-        .popup-buttons-icon button:hover {
-            opacity: 0.8;
-        }
-
-        .popup-buttons-icon button {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            margin: auto;
-        }
-
-        /* Popup Buttons */
-        .popup-buttons-music {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        /* Button Hover Effects */
-        .popup-buttons-music button:hover {
-            opacity: 0.8;
-        }
-
-        .popup-buttons-music button {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            margin: auto;
-        }
-
-        /* Popup Buttons */
-        .popup-buttons-close {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        /* Button Hover Effects */
-        .popup-buttons-close button:hover {
-            opacity: 0.8;
-        }
-
-        .popup-buttons-close button {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            margin: auto;
-        }
-
-        .btn-change {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .btn-cancel {
-            background-color: #2927a4;
-            color: white;
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
     </style>
+    <link rel="stylesheet" href="../main.css" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <main id="main-content">
         <div class="button-grid">
             <!-- 16 buttons with icons -->
-            <button class="btn btn1" onclick="playSound(sounds[1])"><span class="material-icons">home</span></button>
-            <button class="btn btn2" onclick="playSound(sounds[2])"><span class="material-icons">search</span></button>
-            <button class="btn btn3" onclick="playSound(sounds[3])"><span class="material-icons">settings</span></button>
-            <button class="btn btn4" onclick="playSound(sounds[4])"><span class="material-icons">info</span></button>
-            <button class="btn btn5" onclick="playSound(sounds[5])"><span class="material-icons">email</span></button>
+            <button class="btn btn1"><span class="material-icons">home</span></button>
+            <button class="btn btn2"><span class="material-icons">search</span></button>
+            <button class="btn btn3"><span class="material-icons">settings</span></button>
+            <button class="btn btn4"><span class="material-icons">info</span></button>
+            <button class="btn btn5"><span class="material-icons">email</span></button>
         </div>
     </main>
     <div id="popup" class="popup" style="display: none;">
@@ -392,9 +87,9 @@
                 </button>
             </div>
             <hr>
-            <h3>Register Sound</h3>
+            <h3>Register Text</h3>
             <div class="settings-item">
-                <input type="file" id="sound-file" accept="audio/*,.m4a" style="margin-top: 10px;">
+                <textarea id="sound-text" rows="4"></textarea>
             </div>
             <div class="popup-buttons-music">
                 <button class="btn-change" onclick="">
@@ -413,108 +108,6 @@
             </div>
         </div>
     </div>
-    <script>
-        let longPressTimer;
-        const longPressDuration = 500; // 長押しとみなす時間 (ミリ秒)
-        let longPressedButton; // 長押しされたボタンを記録
-        const buttonSounds = {}; // ボタンに対応する音声を記録するオブジェクト
-    
-        // ボタンにイベントリスナーを追加
-        document.querySelectorAll('.button-grid button').forEach(button => {
-            // 通常のクリックで音声再生
-            button.addEventListener('click', (event) => {
-                if (buttonSounds[button.className]) {
-                    buttonSounds[button.className].play();
-                }
-            });
-    
-            // 長押しのイベントリスナー
-            button.addEventListener('mousedown', handleMouseDown);
-            button.addEventListener('mouseup', handleMouseUp);
-            button.addEventListener('mouseleave', handleMouseUp);
-            button.addEventListener('touchstart', handleTouchStart);
-            button.addEventListener('touchend', handleTouchEnd);
-            button.addEventListener('touchcancel', handleTouchEnd);
-        });
-    
-        function handleMouseDown(event) {
-            longPressedButton = event.target.closest('button'); // closest()を使用してbutton要素を取得
-            longPressTimer = setTimeout(() => {
-                showPopup();
-            }, longPressDuration);
-        }
-    
-        function handleMouseUp() {
-            clearTimeout(longPressTimer);
-        }
-    
-        function handleTouchStart(event) {
-            longPressedButton = event.target.closest('button'); // closest()を使用してbutton要素を取得
-            longPressTimer = setTimeout(() => {
-                showPopup();
-            }, longPressDuration);
-        }
-    
-        function handleTouchEnd() {
-            clearTimeout(longPressTimer);
-        }
-    
-        // ポップアップを表示する関数
-        function showPopup() {
-            // 長押しされたボタンの背景色を取得してcolor-inputのvalueに設定
-            const currentColor = window.getComputedStyle(longPressedButton).backgroundColor;
-            document.getElementById('color-input').value = rgbToHex(currentColor);
-    
-            // 長押しされたボタンのアイコンを取得してicon-selectorのvalueに設定
-            const currentIcon = longPressedButton.querySelector('.material-icons').innerText;
-            document.getElementById('icon-selector').value = currentIcon;
-    
-            // 長押しされたボタンの音声を設定
-            const soundInput = document.getElementById('sound-file');
-            if (buttonSounds[longPressedButton.className]) {
-                soundInput.value = ''; // ファイル入力をリセット
-            } else {
-                soundInput.value = ''; // 何も登録されていない場合は空にする
-            }
-    
-            document.getElementById('popup').style.display = 'flex';
-        }
-    
-        // RGBをHexに変換する関数
-        function rgbToHex(rgb) {
-            const result = rgb.match(/\d+/g).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
-            return `#${result}`;
-        }
-    
-        // チェックボタンが押された時の処理
-        document.querySelectorAll('.btn-change').forEach(button => {
-            button.addEventListener('click', () => {
-                const newColor = document.getElementById('color-input').value;
-                const newIcon = document.getElementById('icon-selector').value;
-                const newSoundFile = document.getElementById('sound-file').files[0];
-    
-                if (longPressedButton) {
-                    // 背景色の変更
-                    longPressedButton.style.backgroundColor = newColor;
-    
-                    // アイコンの変更
-                    const iconElement = longPressedButton.querySelector('.material-icons');
-                    iconElement.innerText = newIcon;
-    
-                    // 音声の変更
-                    if (newSoundFile) {
-                        const newSoundURL = URL.createObjectURL(newSoundFile);
-                        buttonSounds[longPressedButton.className] = new Audio(newSoundURL);
-                        alert('音声が正常に登録されました'); // ポップアップメッセージを表示
-                    }
-                }
-            });
-        });
-    
-        // キャンセルボタンの処理
-        document.querySelector('.btn-cancel').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-        });
-    </script>
+    <script src="../main.js"></script>
 </body>
 </html>

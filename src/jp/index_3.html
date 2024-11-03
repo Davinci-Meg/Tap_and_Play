@@ -6,6 +6,33 @@
     <title>Tap & Play</title>
     <link rel="stylesheet" href="../main.css" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 100%;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .menu.show {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .button-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
     <main id="main-content">

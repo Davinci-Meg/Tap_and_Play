@@ -18,10 +18,10 @@ English version is [here](https://github.com/Davinci-Meg/sound_button/blob/main/
 1. [サイト](https://davinci-meg.github.io/Tap_and_Play/)へアクセスする
 
 2. ボタンの数を選択する(1~10個)
-<img width="500" alt="" src="assets/image1.png">
+<img width="500" alt="" src="assets/img/image1.png">
 
 3. 変更したいボタンを長押しして、カスタマイズする
-<img width="500" alt="" src="assets/image2.png">
+<img width="500" alt="" src="assets/img/image2.png">
 
 ## 使用技術
 
