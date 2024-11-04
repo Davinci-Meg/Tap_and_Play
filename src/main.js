@@ -68,6 +68,20 @@ function rgbToHex(rgb) {
     return `#${result}`;
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const iconList = JSON.parse(localStorage.getItem('iconList'));
+    const iconSelector = document.getElementById('icon-selector');
+
+    if (iconList && iconSelector) {
+        iconList.forEach(icon => {
+            const option = document.createElement('option');
+            option.value = icon.value;
+            option.textContent = icon.text;
+            iconSelector.appendChild(option);
+        });
+    }
+});
+
 // チェックボタンが押された時の処理
 document.querySelectorAll('.btn-change').forEach(button => {
     button.addEventListener('click', () => {
