@@ -13,6 +13,36 @@
                 window.location.href = `src/jp/index_${selectedValue}.html`;
             });
         });
+        // Load the icon list from local storage
+        function loadIconList() {
+            const iconList = localStorage.getItem('iconList');
+            if (iconList) {
+            const icons = JSON.parse(iconList);
+            const iconSelector = document.getElementById('icon-selector');
+            iconSelector.innerHTML = '';
+            icons.forEach(icon => {
+                const newOption = document.createElement('option');
+                newOption.value = icon.value;
+                newOption.textContent = icon.text;
+                iconSelector.appendChild(newOption);
+            });
+            } else if (!iconList) {
+                const defaultIcons = [
+                { "value": "radio_button_unchecked", "text": "○"},
+                { "value": "close", "text": "✕" },
+                { "value": "change_history", "text": "△" },
+                { "value": "crop_square", "text": "□" },
+                { "value": "star", "text": "☆" },
+            ];
+            localStorage.setItem('iconList', JSON.stringify(defaultIcons));
+            defaultIcons.forEach(icon => {
+                const newOption = document.createElement('option');
+                newOption.value = icon.value;
+                newOption.textContent = icon.text;
+                document.getElementById('icon-selector').appendChild(newOption);
+            });
+            }
+        }
     </script>
 </head>
 <body>
@@ -43,7 +73,7 @@
                     </button>
                 </div>
                 <div style="margin-top: 25px;">
-                    <a href="src/admin.html">管理者ページ</a>
+                    <a href="src/jp/admin.html">管理者ページ</a>
                     <a href="https://github.com/Davinci-Meg/Tap_and_Play/blob/main/README-jp.md" style="color: #2927a4;" target="_blank" rel="noopener noreferrer">説明書</a>
                     <br>
                     <a href="https://github.com/Davinci-Meg" style="color: #2927a4;" target="_blank" rel="noopener noreferrer">コンタクト</a>

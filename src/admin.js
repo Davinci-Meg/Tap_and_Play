@@ -14,21 +14,10 @@ function loadIconList() {
     } else if (!iconList) {
         const defaultIcons = [
         { "value": "radio_button_unchecked", "text": "○"},
-        { "value": "disabled_by_default", "text": "✕" },
-        { "value": "light_mode", "text": "明るい" },
-        { "value": "dark_mode", "text": "暗い" },
-        { "value": "home", "text": "ホーム" },
-        { "value": "search", "text": "検索" },
-        { "value": "settings", "text": "設定" },
-        { "value": "info", "text": "情報" },
-        { "value": "Delete", "text": "削除" },
-        { "value": "email", "text": "メール" },
-        { "value": "phone", "text": "電話" },
-        { "value": "favorite", "text": "お気に入り" },
-        { "value": "help", "text": "ヘルプ" },
-        { "value": "notifications", "text": "通知" },
-        { "value": "music_note", "text": "音楽" },
-        { "value": "volume_off", "text": "無音" }
+        { "value": "close", "text": "✕" },
+        { "value": "change_history", "text": "△" },
+        { "value": "crop_square", "text": "□" },
+        { "value": "star", "text": "☆" },
     ];
     localStorage.setItem('iconList', JSON.stringify(defaultIcons));
     defaultIcons.forEach(icon => {
