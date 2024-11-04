@@ -86,5 +86,11 @@ document.getElementById('clear-storage').addEventListener('click', function () {
     }
 });
 
+// make the clear button to clear the input fields
+document.querySelector('.btn-change').addEventListener('click', function() {
+    document.getElementById('icon-value').value = '';
+    document.getElementById('icon-description').value = '';
+});
+
 // Load the icon list when the page loads
 window.addEventListener('load', loadIconList);
